@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="css/style.css">
+        <!-- <link rel="stylesheet" type="text/css" href="public/css/style.css"> -->
+        <title>Formularz</title>y 
+    </head>
+    <body>
+
+        <div class="header">
+            <div class="button" style="margin-left: 20px;">
+                Logowanie
+            </div>
+            <div class="footer-heading footer-2">
+                Wycieczki lotnicze
+            </div>
+            <div class="footer-heading footer-3">
+                Wycieczki autokarowe
+            </div>
+            <div class="footer-heading footer-4" style="margin-right: 20px;">
+                Moje konto
+            </div>
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <form name="myForm" style = "display:inline-block">
+            <label for="fname" >Imię:</label><br>
+            <input type="text" id="fname" name="fname" style = "display:inline-block">
+            <div id="cname" class="emsg" style = "display:inline-block">
+            </div> <br><br>
+            <label for="lname">Nazwisko:</label><br>
+            <input type="text" id="lname" name="lname">
+            <div id="cname2" class="emsg"style = "display:inline-block">
+            </div> <br><br>
+            <label for="email">Adres email:</label><br>
+            <input type="text" id="email" name="nr"> <br><br>
+            <label for="liczba">Liczba osób:</label><br>
+            <input type="text" id="liczba" name="liczba"> <br><br>
+            <input type="button" id="modal-btn" value="Zatwierdź">
+
+        </form>
+        
+
+        <div class="modal">
+            <div class="modal-content">
+            <span class="close-btn">OK</span>
+            <p>Udało się wypełnić formularz! Dane z formularza:
+            </p>
+            <div>
+                <div id="imie" >
+                    Imię:
+                </div> <br><br>
+                <div id="nazwisko">
+                    Nazwisko: 
+                </div> <br><br>
+                <div id="nrtel">
+                    Numer telefonu: 
+                </div> <br><br>
+                <div id="ileos">
+                    Liczba osób: 
+                </div> <br><br>
+                
+                </div>
+            </div>
+            
+        </div>
+
+
+        <script type="module">
+            import {komunikat} from './modul.mjs';
+            
+            console.log(komunikat);
+        </script>
+
+
+        <script>
+            const element = document.getElementById("fname");
+            element.addEventListener("focus", (e) => {
+            e.target.style.backgroundColor = "lightblue";
+            });
+
+            element.addEventListener("blur", (e) => {
+            e.target.style.backgroundColor = "";
+            });
+
+            const element2 = document.getElementById("lname");
+            element2.addEventListener("focus", (e) => {
+            e.target.style.backgroundColor = "lightblue";
+            });
+
+            element2.addEventListener("blur", (e) => {
+            e.target.style.backgroundColor = "";
+            });
+
+            const element3 = document.getElementById("nr");
+            element3.addEventListener("focus", (e) => {
+            e.target.style.backgroundColor = "lightblue";
+            });
+
+            element3.addEventListener("blur", (e) => {
+            e.target.style.backgroundColor = "";
+            });
+
+            const element4 = document.getElementById("liczba");
+            element4.addEventListener("focus", (e) => {
+            e.target.style.backgroundColor = "lightblue";
+            });
+
+            element4.addEventListener("blur", (e) => {
+            e.target.style.backgroundColor = "";
+            });
+        </script>
+
+        <!-- <script>
+            var styles='input:focus {background-color:lightblue}';
+            var styleTag=document.createElement('style');
+            if (styleTag.styleSheet) {
+                styleTag.styleSheet.cssText=styles;
+            }
+            else {
+                styleTag.appendChild(document.createTextNode(styles));
+            }
+                
+            document.getElementsByTagName('head')[0].appendChild(styleTag);
+        </script> -->
+
+
+        <script>
+            let modalBtn = document.getElementById("modal-btn")
+            let modal = document.querySelector(".modal")
+            let closeBtn = document.querySelector(".close-btn")
+            modalBtn.onclick = function(){
+                let x = document.forms["myForm"]["fname"].value;
+                let y = document.forms["myForm"]["lname"].value;
+                let a = document.forms["myForm"]["fname"].value.length;
+                let b = document.forms["myForm"]["lname"].value.length;
+
+                field = document.getElementById("fname");
+                error = document.getElementById("cname");
+
+                field2 = document.getElementById("lname");
+                error2 = document.getElementById("cname2");
+                plz = document.getElementById("plz");
+                if (x == "" || y == "" || a > 40 || b > 40) {
+                  if(x == "") {
+                    document.getElementById("fname").style.borderColor = "red";
+                    error.innerHTML = "Imię nie może być puste!\n";
+                  }
+                  if(y == "") {
+                    document.getElementById("lname").style.borderColor = "red";
+                    error2.innerHTML = "Nazwisko nie może być puste!\n";
+                  }
+                  if(a > 40) {
+                    document.getElementById("fname").style.borderColor = "red";
+                    error.innerHTML = "Imię nie może być dłuższe niż 40!\n";
+                  }
+                  if(b > 40) {
+                    document.getElementById("lname").style.borderColor = "red";
+                    error2.innerHTML = "Nazwisko nie może być dłuższe niż 40!\n";
+                  }
+                    document.body.style.backgroundColor = "#ffcccc";  
+
+                }
+                else{
+                    document.body.style.backgroundColor = "#beeefa";
+                    modal.style.display = "block";
+                    modal.style.visibility= "visible";
+                    setTimeout(function() { modal.style.display = "none";}, 15000);
+                    
+                    let im = document.forms["myForm"]["fname"].value;
+                    document.getElementById("imie").innerHTML = "Imię: " + im;
+                    let nazw = document.forms["myForm"]["lname"].value;
+                    document.getElementById("nazwisko").innerHTML = "Nazwisko: " + nazw;
+                    let numr = document.forms["myForm"]["nr"].value;
+                    document.getElementById("nrtel").innerHTML = "Numer telefonu: " + numr;
+                    let liczbaa = document.forms["myForm"]["liczba"].value;
+                    document.getElementById("ileos").innerHTML = "Liczba osób: " + liczbaa;
+                }
+            }
+            closeBtn.onclick = function(){
+                modal.style.display = "none";
+            }
+            
+        </script>
+
+        <div class="footer">
+            <div class="footer-heading footer-1" style="margin-left: 20px;">
+                Biuro podróży, 2022
+            </div>
+            <div class="footer-heading footer-2">
+                O firmie
+            </div>
+            <div class="footer-heading footer-3">
+                Polityka prywatności
+            </div>
+            <div class="footer-heading footer-4" style="margin-right: 20px;">
+                Kontakt
+            </div>
+        </div>
+
+    </body>
+</html>

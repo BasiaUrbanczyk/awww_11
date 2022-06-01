@@ -1,0 +1,55 @@
+doctype html
+head
+  meta(charset='utf-8')
+  link(rel='stylesheet' href='css/style.css')
+  // <link rel="stylesheet" type="text/css" href="public/css/style.css">
+  title wycieczka
+include header
+br
+br
+.column-layout
+  .main-column
+    .main-column-one
+        - var indeks = 0
+        for wycieczka in wycieczki
+            #zdjecie-2
+                - var link = wycieczka.zdjecie
+                img(src=link alt='Girl in a jacket' width='220')
+            a#a.button(style = 'font-weight: bold; text-decoration: none; font-size: 20px;' href='strona?id='+indeks) #{wycieczka.tytul}
+            p #{wycieczka.opis}
+            #paragraf
+                div Cena: #{wycieczka.cena}
+                a#a.button(href='formularz?id='+indeks style='margin: 0 0 0 auto; text-decoration: none;' ) Zarezerwuj &gt;&gt; 
+            - indeks = indeks + 1
+            br
+            br
+            br
+            br
+            br
+  .sidebar
+    .promocje
+      h3 Promocje: 
+      h4 G&oacute;ry wysokie
+      div
+        p 1-31 lutego
+        #d.button Rezerwuj &gt;&gt; 
+      h4 Inne miejsce
+      div
+        p 17-18 kwietnia
+        #d1.button Rezerwuj &gt;&gt; 
+      h4 Te&zdot; gdzie&sacute;
+      div
+        p w listopadzie
+        #d2.button Rezerwuj &gt;&gt; 
+      h4 Warszawa
+      div
+        p ci&aogon;gle
+        #d3.button Rezerwuj &gt;&gt; 
+    br
+    .porady
+      h3 Porady: 
+      p Co zabra&cacute; na wycieczk&eogon;?
+      p Kiedy najlepiej wyjecha&cacute;?
+      p Jakie buty s&aogon; najwygodniejsze?
+
+include footer

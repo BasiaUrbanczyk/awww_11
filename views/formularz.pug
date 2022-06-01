@@ -1,0 +1,97 @@
+doctype html
+head
+  meta(charset='utf-8')
+  link(rel='stylesheet' href='css/style.css')
+  // <link rel="stylesheet" type="text/css" href="public/css/style.css">
+  title Formularz
+include header 
+br
+br
+br
+if typeof(walidacje) !== 'undefined'
+  each val in walidacje
+    <div>
+      a(style='color:red') #{val.msg}
+    </div>
+
+h1 #{wycieczki[id].tytul}
+form(name='myForm' style='display:inline-block' method="POST" action="/obsluga?id="+id)
+  label(for='fname') Imi&eogon;:
+  br
+  input#fname(type='text' name='fname' style='display:inline-block')
+  #cname.emsg(style='display:inline-block')
+  br
+  br
+  label(for='lname') Nazwisko:
+  br
+  input#lname(type='text' name='lname')
+  #cname2.emsg(style='display:inline-block')
+  br
+  br
+  label(for='nr') Adres email:
+  br
+  input#nr(type='text' name='nr')
+  br
+  br
+  label(for='liczba') Liczba os&oacute;b:
+  br
+  input#liczba(type='text' name='liczba')
+  br
+  br
+  input#submit(type='submit' value='Zatwierdź')
+.modal
+  .modal-content
+    span.close-btn OK
+    p
+      | Uda&lstrok;o si&eogon; wype&lstrok;ni&cacute; formularz! Dane z formularza:
+    div
+      #imie
+        | Imi&eogon;:
+      br
+      br
+      #nazwisko
+        | Nazwisko:
+      br
+      br
+      #nrtel
+        | Adres email:
+      br
+      br
+      #ileos
+        | Liczba os&oacute;b:
+      br
+      br
+
+script.
+  const element = document.getElementById("fname");
+  element.addEventListener("focus", (e) => {
+  e.target.style.backgroundColor = "lightblue";
+  });
+  element.addEventListener("blur", (e) => {
+  e.target.style.backgroundColor = "";
+  });
+  const element2 = document.getElementById("lname");
+  element2.addEventListener("focus", (e) => {
+  e.target.style.backgroundColor = "lightblue";
+  });
+  element2.addEventListener("blur", (e) => {
+  e.target.style.backgroundColor = "";
+  });
+  const element3 = document.getElementById("nr");
+  element3.addEventListener("focus", (e) => {
+  e.target.style.backgroundColor = "lightblue";
+  });
+  element3.addEventListener("blur", (e) => {
+  e.target.style.backgroundColor = "";
+  });
+  const element4 = document.getElementById("liczba");
+  element4.addEventListener("focus", (e) => {
+  e.target.style.backgroundColor = "lightblue";
+  });
+  element4.addEventListener("blur", (e) => {
+  e.target.style.backgroundColor = "";
+  });
+
+
+
+include footer
